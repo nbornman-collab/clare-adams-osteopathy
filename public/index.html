@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clare Adams Osteopathy — Berkhamsted & Marylebone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage:   #7a8c6e;
+  --sage2:  #9aad8a;
+  --cream:  #f7f4ef;
+  --warm:   #ede9e1;
+  --ink:    #2a2825;
+  --ink2:   #5a5650;
+  --ink3:   #8a8680;
+  --rule:   rgba(42,40,37,.1);
+  --sans:   'Inter', sans-serif;
+  --display:'Cormorant Garamond', Georgia, serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; background: rgba(247,244,239,.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-logo { font: 400 15px var(--display); letter-spacing: .04em; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--sage); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font: 400 13px var(--sans); color: var(--ink2); text-decoration: none; letter-spacing: .04em; transition: color .15s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  padding: 9px 20px; background: var(--sage); color: #fff !important;
+  border-radius: 6px; font: 500 12px var(--sans) !important; letter-spacing: .06em !important;
+  text-transform: uppercase; transition: background .15s !important;
+}
+.nav-cta:hover { background: #6a7c5e !important; }
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-cta-mobile {
+    display: flex; align-items: center;
+    padding: 8px 16px; background: var(--sage); color: #fff;
+    border-radius: 6px; font: 500 11px var(--sans); letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+  }
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 40px 80px;
+  background: linear-gradient(160deg, #f0ede5 0%, #e8e3d8 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(122,140,110,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.hero-label { font: 400 12px var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px; }
+.hero-title { font: 300 clamp(42px,5.5vw,72px)/1.05 var(--display); color: var(--ink); letter-spacing: -.01em; margin-bottom: 24px; }
+.hero-title em { font-style: italic; color: var(--sage); }
+.hero-body { font: 300 19px/1.8 var(--sans); color: var(--ink2); margin-bottom: 36px; max-width: 440px; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 14px 28px; background: var(--sage); color: #fff;
+  font: 500 13px var(--sans); letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; border-radius: 7px; transition: background .15s;
+}
+.btn-primary:hover { background: #6a7c5e; }
+.btn-ghost {
+  padding: 14px 28px; border: 1.5px solid rgba(42,40,37,.2); color: var(--ink2);
+  font: 500 13px var(--sans); letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; border-radius: 7px; transition: all .15s;
+}
+.btn-ghost:hover { border-color: var(--sage); color: var(--sage); }
+
+/* Hero card */
+.hero-card {
+  background: #fff; border-radius: 20px; padding: 40px;
+  box-shadow: 0 20px 60px rgba(42,40,37,.08);
+}
+.hero-card-title { font: 300 22px var(--display); color: var(--ink); margin-bottom: 24px; }
+.location-pill {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; background: var(--cream); border-radius: 10px;
+  margin-bottom: 12px; text-decoration: none;
+  transition: background .15s;
+}
+.location-pill:hover { background: var(--warm); }
+.location-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+.location-name { font: 600 14px var(--sans); color: var(--ink); }
+.location-addr { font: 400 13px var(--sans); color: var(--ink3); margin-top: 2px; }
+.hero-card-note { font: 400 13px/1.6 var(--sans); color: var(--ink3); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule); }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-card { order: -1; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 100px 20px 60px; }
+}
+
+/* SECTION BASE */
+.section { padding: 100px 40px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font: 400 12px var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px; }
+.section-title { font: 300 clamp(32px,4vw,52px)/1.1 var(--display); color: var(--ink); margin-bottom: 20px; }
+.section-title em { font-style: italic; }
+.section-body { font: 300 18px/1.85 var(--sans); color: var(--ink2); max-width: 640px; }
+
+/* WHAT WE TREAT */
+.treat-section { background: var(--warm); }
+.treat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+.treat-card {
+  background: #fff; border-radius: 14px; padding: 28px 24px;
+  border: 1px solid rgba(42,40,37,.06);
+}
+.treat-icon { font-size: 28px; margin-bottom: 14px; }
+.treat-name { font: 600 15px var(--sans); color: var(--ink); margin-bottom: 6px; }
+.treat-desc { font: 400 13px/1.6 var(--sans); color: var(--ink3); }
+@media (max-width: 900px) { .treat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .treat-grid { grid-template-columns: 1fr; } }
+
+/* WHAT TO EXPECT */
+.expect-section { background: var(--cream); }
+.expect-steps { display: flex; flex-direction: column; gap: 0; margin-top: 56px; max-width: 720px; }
+.expect-step { display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+.expect-step:last-child { border-bottom: none; }
+.expect-num { font: 300 36px var(--display); color: var(--sage); flex-shrink: 0; width: 48px; line-height: 1; }
+.expect-content {}
+.expect-title { font: 600 16px var(--sans); color: var(--ink); margin-bottom: 6px; }
+.expect-text { font: 400 15px/1.7 var(--sans); color: var(--ink2); }
+
+/* LOCATIONS */
+.locations-section { background: var(--ink); }
+.locations-section .section-label { color: var(--sage2); }
+.locations-section .section-title { color: #f7f4ef; }
+.locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; }
+.location-card {
+  background: rgba(247,244,239,.05); border: 1px solid rgba(247,244,239,.1);
+  border-radius: 16px; padding: 40px; transition: background .2s;
+}
+.location-card:hover { background: rgba(247,244,239,.08); }
+.location-card-label { font: 400 11px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--sage2); margin-bottom: 16px; }
+.location-card-name { font: 300 28px var(--display); color: #f7f4ef; margin-bottom: 16px; }
+.location-card-addr { font: 400 15px/1.7 var(--sans); color: rgba(247,244,239,.55); margin-bottom: 24px; }
+.location-card-note { font: 400 14px/1.6 var(--sans); color: rgba(247,244,239,.4); padding-top: 20px; border-top: 1px solid rgba(247,244,239,.08); }
+.location-tag {
+  display: inline-block; padding: 6px 14px; border: 1px solid rgba(247,244,239,.15);
+  border-radius: 20px; font: 400 12px var(--sans); color: rgba(247,244,239,.5);
+  margin-right: 8px; margin-bottom: 8px;
+}
+@media (max-width: 700px) { .locations-grid { grid-template-columns: 1fr; } }
+
+/* BOOKING FORM */
+.booking-section { background: var(--cream); }
+.booking-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.booking-left {}
+.booking-right {}
+.form-wrap {
+  background: #fff; border-radius: 20px; padding: 48px;
+  box-shadow: 0 12px 48px rgba(42,40,37,.07);
+}
+.form-title { font: 300 28px var(--display); color: var(--ink); margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-label { font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink2); margin-bottom: 8px; display: block; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 12px 16px;
+  background: var(--cream); border: 1.5px solid rgba(42,40,37,.12);
+  border-radius: 8px; font: 400 15px var(--sans); color: var(--ink);
+  outline: none; transition: border-color .15s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sage); }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit {
+  width: 100%; padding: 16px; background: var(--sage); color: #fff;
+  border: none; border-radius: 8px; font: 600 13px var(--sans);
+  letter-spacing: .08em; text-transform: uppercase; cursor: pointer;
+  transition: background .15s; margin-top: 8px;
+}
+.form-submit:hover { background: #6a7c5e; }
+.form-note { font: 400 13px/1.6 var(--sans); color: var(--ink3); text-align: center; margin-top: 16px; }
+.form-success { display: none; text-align: center; padding: 32px; }
+.form-success-icon { font-size: 40px; margin-bottom: 16px; }
+.form-success-title { font: 300 24px var(--display); color: var(--ink); margin-bottom: 8px; }
+.form-success-body { font: 400 15px/1.6 var(--sans); color: var(--ink2); }
+
+.info-block { margin-bottom: 40px; }
+.info-block-title { font: 600 14px var(--sans); color: var(--ink); margin-bottom: 12px; letter-spacing: .04em; }
+.info-block-body { font: 400 15px/1.7 var(--sans); color: var(--ink2); }
+.info-fee { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.info-fee:last-child { border-bottom: none; }
+.info-fee-name { font: 400 15px var(--sans); color: var(--ink2); }
+.info-fee-price { font: 600 15px var(--sans); color: var(--ink); }
+
+@media (max-width: 900px) {
+  .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-wrap { padding: 32px 24px; }
+}
+@media (max-width: 600px) {
+  .section { padding: 72px 20px; }
+}
+
+/* FOOTER */
+footer {
+  background: #1e1d1b; padding: 56px 40px 32px;
+  border-top: 1px solid rgba(247,244,239,.06);
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 32px; }
+.footer-brand { font: 300 24px var(--display); color: #f7f4ef; margin-bottom: 8px; }
+.footer-brand span { color: var(--sage2); }
+.footer-tagline { font: 400 13px var(--sans); color: rgba(247,244,239,.35); }
+.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-col-title { font: 600 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: rgba(247,244,239,.35); margin-bottom: 16px; }
+.footer-col a { display: block; font: 400 14px var(--sans); color: rgba(247,244,239,.55); text-decoration: none; margin-bottom: 10px; transition: color .15s; }
+.footer-col a:hover { color: #f7f4ef; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(247,244,239,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font: 400 12px var(--sans); color: rgba(247,244,239,.25); }
+.footer-reg { font: 400 12px var(--sans); color: rgba(247,244,239,.25); }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: .1s; }
+.reveal-d2 { transition-delay: .2s; }
+.reveal-d3 { transition-delay: .3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Clare Adams <span>Osteopathy</span></a>
+  <div class="nav-links">
+    <a href="#treat">Treatments</a>
+    <a href="#locations">Locations</a>
+    <a href="#expect">About</a>
+    <a href="#book" class="nav-cta">Book Now</a>
+  </div>
+  <a href="#book" class="nav-cta-mobile" style="display:none">Book</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-label">Registered Osteopath — GOsC</div>
+      <h1 class="hero-title">Hands-on care<br>for a body<br><em>that moves well.</em></h1>
+      <p class="hero-body">Specialist osteopathic treatment in Berkhamsted and central London. Back pain, sports injuries, postural issues — assessed thoroughly, treated with care.</p>
+      <div class="hero-ctas">
+        <a href="#book" class="btn-primary">Book an Appointment</a>
+        <a href="#treat" class="btn-ghost">What We Treat</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">Two clinic locations</div>
+      <a class="location-pill" href="#locations">
+        <div class="location-dot"></div>
+        <div>
+          <div class="location-name">Berkhamsted</div>
+          <div class="location-addr">Aldbury House, Dower Mews, High Street HP4 2BL</div>
+        </div>
+      </a>
+      <a class="location-pill" href="#locations">
+        <div class="location-dot"></div>
+        <div>
+          <div class="location-name">Marylebone, London</div>
+          <div class="location-addr">Light Centre, 10 Portman Square W1H 6AZ</div>
+        </div>
+      </a>
+      <p class="hero-card-note">New patients welcome. Initial consultations up to one hour. All information treated in confidence under GDPR.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE TREAT -->
+<section class="section treat-section" id="treat">
+  <div class="section-inner">
+    <div class="section-label reveal">What we treat</div>
+    <h2 class="section-title reveal reveal-d1">Common conditions<br><em>we can help with.</em></h2>
+    <p class="section-body reveal reveal-d2">Osteopathy addresses a wide range of musculoskeletal conditions — from acute injuries to long-standing postural issues. Every patient is assessed as a whole, not just the presenting complaint.</p>
+    <div class="treat-grid">
+      <div class="treat-card reveal">
+        <div class="treat-icon">🦴</div>
+        <div class="treat-name">Back & Neck Pain</div>
+        <div class="treat-desc">Acute and chronic, including disc-related and postural causes</div>
+      </div>
+      <div class="treat-card reveal reveal-d1">
+        <div class="treat-icon">🏃</div>
+        <div class="treat-name">Sports Injuries</div>
+        <div class="treat-desc">Strains, sprains, overuse injuries and return-to-sport rehab</div>
+      </div>
+      <div class="treat-card reveal reveal-d2">
+        <div class="treat-icon">⚡</div>
+        <div class="treat-name">Sciatica</div>
+        <div class="treat-desc">Nerve pain, radiating leg symptoms and lumbar disc conditions</div>
+      </div>
+      <div class="treat-card reveal reveal-d3">
+        <div class="treat-icon">💆</div>
+        <div class="treat-name">Headaches</div>
+        <div class="treat-desc">Cervicogenic headaches related to neck tension and posture</div>
+      </div>
+      <div class="treat-card reveal">
+        <div class="treat-icon">🦾</div>
+        <div class="treat-name">Shoulder & Elbow</div>
+        <div class="treat-desc">Frozen shoulder, rotator cuff, tennis elbow and golfer's elbow</div>
+      </div>
+      <div class="treat-card reveal reveal-d1">
+        <div class="treat-icon">🦴</div>
+        <div class="treat-name">Arthritic Pain</div>
+        <div class="treat-desc">Joint mobility, pain management and maintenance treatment</div>
+      </div>
+      <div class="treat-card reveal reveal-d2">
+        <div class="treat-icon">🧘</div>
+        <div class="treat-name">Postural Issues</div>
+        <div class="treat-desc">Work-related strain, desk posture, ergonomic assessment</div>
+      </div>
+      <div class="treat-card reveal reveal-d3">
+        <div class="treat-icon">🔄</div>
+        <div class="treat-name">Maintenance</div>
+        <div class="treat-desc">Ongoing care to keep you moving well and prevent recurrence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="section expect-section" id="expect">
+  <div class="section-inner">
+    <div class="section-label reveal">What to expect</div>
+    <h2 class="section-title reveal reveal-d1">Your first visit,<br><em>step by step.</em></h2>
+    <div class="expect-steps">
+      <div class="expect-step reveal">
+        <div class="expect-num">01</div>
+        <div class="expect-content">
+          <div class="expect-title">History & Consultation</div>
+          <div class="expect-text">Your osteopath will listen carefully to your symptoms and medical history, asking questions to understand the full picture. Initial appointments are up to one hour — there's no rush.</div>
+        </div>
+      </div>
+      <div class="expect-step reveal reveal-d1">
+        <div class="expect-num">02</div>
+        <div class="expect-content">
+          <div class="expect-title">Clinical Examination</div>
+          <div class="expect-text">A thorough assessment of posture, joint movement and function. Depending on your symptoms this may include neurological checks such as reflexes and blood pressure.</div>
+        </div>
+      </div>
+      <div class="expect-step reveal reveal-d2">
+        <div class="expect-num">03</div>
+        <div class="expect-content">
+          <div class="expect-title">Treatment</div>
+          <div class="expect-text">Soft tissue massage, joint mobilisation, manipulation and exercise advice — tailored to your specific needs. If further investigation is appropriate, Clare will explain clearly and refer where needed.</div>
+        </div>
+      </div>
+      <div class="expect-step reveal reveal-d3">
+        <div class="expect-num">04</div>
+        <div class="expect-content">
+          <div class="expect-title">Aftercare & Advice</div>
+          <div class="expect-text">Guidance on posture, exercises and lifestyle to support your recovery and reduce the likelihood of recurrence. Follow-up appointments are shorter and more focused.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font:400 14px/1.7 var(--sans);color:var(--ink3);margin-top:32px;">Comfortable clothing recommended — leggings or shorts work well. Towels provided at the clinic.</p>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="section locations-section" id="locations">
+  <div class="section-inner">
+    <div class="section-label reveal">Clinic locations</div>
+    <h2 class="section-title reveal reveal-d1">Berkhamsted<br><em>and Marylebone.</em></h2>
+    <div class="locations-grid">
+      <div class="location-card reveal">
+        <div class="location-card-label">Location 01</div>
+        <div class="location-card-name">Berkhamsted</div>
+        <div class="location-card-addr">
+          Aldbury House, Dower Mews<br>
+          High Street<br>
+          Berkhamsted HP4 2BL
+        </div>
+        <div>
+          <span class="location-tag">Hertfordshire</span>
+          <span class="location-tag">Free parking nearby</span>
+        </div>
+        <div class="location-card-note">Walk down the Mews between Dower House Coffee and Mad Squirrel. Building on the right — right hand door, press the third buzzer.</div>
+      </div>
+      <div class="location-card reveal reveal-d1">
+        <div class="location-card-label">Location 02</div>
+        <div class="location-card-name">Marylebone, London</div>
+        <div class="location-card-addr">
+          Light Centre Marylebone<br>
+          Unit 4, 10 Portman Square<br>
+          London W1H 6AZ
+        </div>
+        <div>
+          <span class="location-tag">Central London</span>
+          <span class="location-tag">Marble Arch 5 min</span>
+          <span class="location-tag">Bond Street 8 min</span>
+        </div>
+        <div class="location-card-note">Served by multiple tube lines. Marble Arch (Central), Bond Street (Central/Jubilee), Baker Street (Jubilee/Metropolitan) all within walking distance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section booking-section" id="book">
+  <div class="booking-inner">
+    <div class="booking-left">
+      <div class="section-label reveal">Book an appointment</div>
+      <h2 class="section-title reveal reveal-d1">Get in touch.<br><em>Clare will respond<br>within 24 hours.</em></h2>
+      <div class="info-block reveal reveal-d2" style="margin-top:40px">
+        <div class="info-block-title">Appointment types</div>
+        <div class="info-fee">
+          <span class="info-fee-name">Initial Consultation (up to 60 min)</span>
+          <span class="info-fee-price">Enquire</span>
+        </div>
+        <div class="info-fee">
+          <span class="info-fee-name">Follow-up Treatment (45 min)</span>
+          <span class="info-fee-price">Enquire</span>
+        </div>
+        <div class="info-fee">
+          <span class="info-fee-name">Maintenance Session (30 min)</span>
+          <span class="info-fee-price">Enquire</span>
+        </div>
+      </div>
+      <div class="info-block reveal reveal-d3">
+        <div class="info-block-title">Good to know</div>
+        <div class="info-block-body">All osteopaths in the UK are regulated by the General Osteopathic Council (GOsC). Clare renews her registration annually and meets all continuing professional development requirements. All patient information is held in strict confidence under GDPR.</div>
+      </div>
+    </div>
+    <div class="booking-right reveal reveal-d1">
+      <div class="form-wrap" id="form-wrap">
+        <div class="form-title">Request an appointment</div>
+        <form id="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input class="form-input" type="text" name="name" placeholder="Clare" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input class="form-input" type="text" name="surname" placeholder="Adams">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input class="form-input" type="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone number</label>
+            <input class="form-input" type="tel" name="phone" placeholder="+44 7700 000000">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Preferred location</label>
+              <select class="form-select" name="location">
+                <option value="">Select location</option>
+                <option value="berkhamsted">Berkhamsted</option>
+                <option value="marylebone">Marylebone, London</option>
+                <option value="either">Either / No preference</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Appointment type</label>
+              <select class="form-select" name="type">
+                <option value="">Select type</option>
+                <option value="initial">Initial Consultation</option>
+                <option value="followup">Follow-up</option>
+                <option value="maintenance">Maintenance</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brief description of your concern</label>
+            <textarea class="form-textarea" name="message" placeholder="e.g. Lower back pain for 3 weeks, worse on sitting..."></textarea>
+          </div>
+          <button class="form-submit" type="submit">Send Enquiry</button>
+          <p class="form-note">Clare will respond within 24 hours to confirm availability and next steps.</p>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Enquiry sent</div>
+          <div class="form-success-body">Thank you — Clare will be in touch within 24 hours to confirm your appointment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Clare Adams <span>Osteopathy</span></div>
+        <div class="footer-tagline">Registered Osteopath — GOsC</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Clinic</div>
+          <a href="#treat">Treatments</a>
+          <a href="#expect">What to Expect</a>
+          <a href="#book">Book Now</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Locations</div>
+          <a href="#locations">Berkhamsted</a>
+          <a href="#locations">Marylebone, London</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="#book">Send an Enquiry</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Clare Adams Osteopathy. All rights reserved.</div>
+      <div class="footer-reg">Regulated by the General Osteopathic Council (GOsC)</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Mobile nav CTA
+if (window.innerWidth <= 680) {
+  document.querySelector('.nav-cta-mobile').style.display = 'flex';
+}
+
+// Booking form
+document.getElementById('booking-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const data = Object.fromEntries(new FormData(e.target));
+  try {
+    const res = await fetch('/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.ok) {
+      document.getElementById('booking-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  } catch(err) {
+    btn.textContent = 'Send Enquiry';
+    btn.disabled = false;
+    alert('Something went wrong — please try again.');
+  }
+});
+</script>
+</body>
+</html>
