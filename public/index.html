@@ -304,8 +304,8 @@ footer{background:var(--dark);padding:80px 48px 36px;border-top:1px solid rgba(2
 .booking-options h3{font-size:16px;margin-bottom:12px;color:var(--dark)}
 .appointment-select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px}
 .location-tabs{display:flex;gap:8px}
-.location-tab{background:#f0f0f0;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;transition:all .2s}
-.location-tab.active{background:var(--sage);color:#fff}
+.location-info{background:#f9f9f9;padding:12px;border-radius:6px;font-size:14px;color:#666}
+.location-info strong{color:var(--dark);display:block;margin-bottom:4px}
 .calendar-view{margin-bottom:24px}
 .calendar-header h3{font-size:18px;margin-bottom:20px;color:var(--dark)}
 .calendar-day{margin-bottom:16px}
@@ -704,7 +704,7 @@ footer{background:var(--dark);padding:80px 48px 36px;border-top:1px solid rgba(2
           <div class="return-card-tag">Returning Patient</div>
           <div class="return-card-title">Book or reschedule online</div>
           <div class="return-card-body">Manage your appointments without waiting for a reply. Book your next session, reschedule, or cancel — all in one place.</div>
-          <a href="#" class="return-card-link" onclick="openAppointmentManager()">Manage Appointments</a>
+          <a href="#" class="return-card-link" onclick="openAppointmentManager()">Book/Manage Appointments</a>
         </div>
         <div class="booking-info-block reveal reveal-d2">
           <div class="info-lbl">Appointment Types</div>
@@ -876,12 +876,13 @@ function confirmBooking() {
     <!-- Welcome Screen -->
     <div id="appointment-welcome" class="appointment-screen">
       <div class="appointment-header">
-        <h2>Manage Your Appointments</h2>
-        <p>Book, reschedule, or cancel appointments online</p>
+        <h2>Book/Manage Appointments</h2>
+        <p>New patients welcome — existing patients can manage bookings</p>
       </div>
       <div class="appointment-welcome-options">
-        <button class="appointment-btn appointment-btn-primary" onclick="showAppointmentLogin()">Sign In to Account</button>
-        <p class="appointment-help">First time? Use the email and phone number from your last appointment</p>
+        <button class="appointment-btn appointment-btn-primary" onclick="showBookingCalendar()">Book New Appointment</button>
+        <button class="appointment-btn appointment-btn-outline" onclick="showAppointmentLogin()">Manage Existing Bookings</button>
+        <p class="appointment-help">New patients start with "Book New" — existing patients use "Manage Existing"</p>
       </div>
     </div>
     
@@ -972,10 +973,10 @@ function confirmBooking() {
         </div>
         
         <div class="booking-location">
-          <h3>Preferred Location</h3>
-          <div class="location-tabs">
-            <button class="location-tab active">Berkhamsted</button>
-            <button class="location-tab">Marylebone</button>
+          <h3>Location</h3>
+          <div class="location-info">
+            <strong>Berkhamsted Clinic</strong><br>
+            <span>Aldbury House, Dower Mews, High Street HP4 2BL</span>
           </div>
         </div>
       </div>
