@@ -304,8 +304,8 @@ footer{background:var(--dark);padding:80px 48px 36px;border-top:1px solid rgba(2
 .booking-options h3{font-size:16px;margin-bottom:12px;color:var(--dark)}
 .appointment-select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px}
 .location-tabs{display:flex;gap:8px}
-.location-info{background:#f9f9f9;padding:12px;border-radius:6px;font-size:14px;color:#666}
-.location-info strong{color:var(--dark);display:block;margin-bottom:4px}
+.location-tab{background:#f0f0f0;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;transition:all .2s}
+.location-tab.active{background:var(--sage);color:#fff}
 .calendar-view{margin-bottom:24px}
 .calendar-header h3{font-size:18px;margin-bottom:20px;color:var(--dark)}
 .calendar-day{margin-bottom:16px}
@@ -353,7 +353,7 @@ footer{background:var(--dark);padding:80px 48px 36px;border-top:1px solid rgba(2
     <div class="hero-divider"></div>
     <p class="hero-tagline">Specialist hands-on osteopathic treatment in Berkhamsted and central London. Back pain, sports injuries, postural issues — assessed thoroughly, treated with care.</p>
     <div class="hero-buttons">
-      <a href="#book" class="btn-dark">Book an Appointment</a>
+      <a href="#" class="btn-dark" onclick="openAppointmentManager()">Book an Appointment</a>
       <a href="#about" class="btn-outline">About Clare</a>
     </div>
   </div>
@@ -372,7 +372,7 @@ footer{background:var(--dark);padding:80px 48px 36px;border-top:1px solid rgba(2
         <div class="hero-loc-addr">17 Linhope Street<br>London NW1 6HT</div>
       </a>
       <p class="hero-panel-note">New patients welcome. Initial consultations up to one hour. All information treated in confidence under GDPR.</p>
-      <a href="#book" class="hero-panel-btn">Request an Appointment</a>
+      <a href="#" class="hero-panel-btn" onclick="openAppointmentManager()">Book an Appointment</a>
     </div>
   </div>
 </section>
@@ -813,6 +813,8 @@ document.getElementById('booking-form').addEventListener('submit', async (e) => 
 function openAppointmentManager() {
   document.getElementById('appointment-manager').style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  // Skip welcome screen, go straight to calendar
+  showBookingCalendar();
 }
 
 function closeAppointmentManager() {
@@ -831,8 +833,22 @@ function showAppointmentDashboard() {
 }
 
 function showBookingCalendar() {
+  document.getElementById('appointment-welcome').style.display = 'none';
+  document.getElementById('appointment-login').style.display = 'none';
   document.getElementById('appointment-dashboard').style.display = 'none';
   document.getElementById('appointment-calendar').style.display = 'block';
+  
+  // Setup location tabs
+  setTimeout(() => setupLocationTabs(), 100);
+}
+
+function setupLocationTabs() {
+  document.querySelectorAll('.location-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.location-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
 }
 
 function backToDashboard() {
@@ -880,9 +896,8 @@ function confirmBooking() {
         <p>New patients welcome — existing patients can manage bookings</p>
       </div>
       <div class="appointment-welcome-options">
-        <button class="appointment-btn appointment-btn-primary" onclick="showBookingCalendar()">Book New Appointment</button>
+        <button class="appointment-btn appointment-btn-primary" onclick="showBookingCalendar()">Book Appointment</button>
         <button class="appointment-btn appointment-btn-outline" onclick="showAppointmentLogin()">Manage Existing Bookings</button>
-        <p class="appointment-help">New patients start with "Book New" — existing patients use "Manage Existing"</p>
       </div>
     </div>
     
@@ -973,10 +988,10 @@ function confirmBooking() {
         </div>
         
         <div class="booking-location">
-          <h3>Location</h3>
-          <div class="location-info">
-            <strong>Berkhamsted Clinic</strong><br>
-            <span>Aldbury House, Dower Mews, High Street HP4 2BL</span>
+          <h3>Preferred Location</h3>
+          <div class="location-tabs">
+            <button class="location-tab active" data-location="berkhamsted">Berkhamsted</button>
+            <button class="location-tab" data-location="marylebone">Marylebone</button>
           </div>
         </div>
       </div>
